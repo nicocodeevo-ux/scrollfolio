@@ -1,0 +1,8 @@
+{
+  "name": "Nico Codeevo | Python System Developer Portfolio",
+  "description": "A high-performance React portfolio for a Python System Developer featuring 3D visuals, GSAP animations, and integrated Gemini AI support.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+    font-family: 'Titillium Web', 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+  }
+}
+
+@layer components {
+  .metallic-card {
+    @apply apple-glass brushed-metal;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(255, 255, 255, 0.05) 75%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 0 40px rgba(255, 122, 34, 0.1);
+    position: relative;
+    overflow: hidden;
+    --light-intensity: 1;
+    transition: all 0.3s ease;
+  }
+
+  .metallic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    );
+    transform: skewX(-25deg);
+    transition: left 0.75s ease;
+    pointer-events: none;
+    opacity: var(--light-intensity);
+  }
+
+  .metallic-card:hover::before {
+    left: 100%;
+  }
+
+  .metallic-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    opacity: var(--light-intensity);
+  }
+
+  .metallic-card:hover {
+    box-shadow: 
+      0 80px 160px -40px rgba(255,122,34,0.5),
+      0 60px 120px -30px rgba(0,0,0,0.9),
+      0 0 60px rgba(255,255,255,0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .metallic-card h2,
+  .metallic-card h3,
+  .metallic-card .text-3xl,
+  .metallic-card .text-2xl,
+  .metallic-card .text-xl {
+    transition: all 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  .metallic-card:hover h2,
+  .metallic-card:hover h3,
+  .metallic-card:hover .text-3xl,
+  .metallic-card:hover .text-2xl,
+  .metallic-card:hover .text-xl {
+    transform: scale(1.2) translateZ(20px) translateY(-10px);
+    text-shadow: 0 0 20px rgba(255,122,34,0.8), 0 0 40px rgba(255,255,255,0.4);
+  }
+  
+  .depth-shadow {
+    box-shadow: 
+      0 10px 25px -5px rgba(0, 0, 0, 0.4),
+      0 20px 50px -10px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  }
+  
+  .depth-shadow-lg {
+    box-shadow: 
+      0 20px 40px -10px rgba(0, 0, 0, 0.5),
+      0 40px 80px -20px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Amazing 3D Metallic Buttons */
+  button {
+    @apply apple-glass brushed-metal;
+    background: 
+      linear-gradient(145deg, 
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 30%,
+        rgba(255, 255, 255, 0.03) 50%,
+        rgba(255, 255, 255, 0.08) 70%,
+        rgba(255, 255, 255, 0.15) 100%
+      ),
+      linear-gradient(135deg, 
+        rgba(255, 122, 34, 0.3) 0%,
+        rgba(255, 122, 34, 0.1) 50%,
+        rgba(255, 122, 34, 0.3) 100%
+      );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      /* 3D depth shadows */
+      0 25px 50px -12px rgba(0, 0, 0, 0.8),
+      0 15px 30px -8px rgba(0, 0, 0, 0.6),
+      0 8px 16px -4px rgba(0, 0, 0, 0.4),
+      /* Inner metallic highlights */
+      inset 0 2px 4px rgba(255, 255, 255, 0.6),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      /* Edge highlights */
+      0 0 0 1px rgba(255, 255, 255, 0.3),
+      0 0 20px rgba(255, 122, 34, 0.4),
+      /* Ambient glow */
+      0 0 40px rgba(255, 122, 34, 0.2);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: perspective(1000px) rotateX(2deg);
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(255, 255, 255, 0.6) 30%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.6) 70%,
+      transparent 100%
+    );
+    transform: skewX(-25deg) translateZ(10px);
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  button:hover::before {
+    left: 100%;
+  }
+
+  button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent 0%,
+      rgba(255, 255, 255, 0.9) 20%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 0.9) 80%,
+      transparent 100%
+    );
+    pointer-events: none;
+    transform: translateZ(5px);
+  }
+
+  button:hover {
+    transform: perspective(1000px) rotateX(0deg) translateY(-2px) scale(1.02);
+    box-shadow: 
+      /* Enhanced 3D depth on hover */
+      0 35px 70px -15px rgba(0, 0, 0, 0.9),
+      0 20px 40px -10px rgba(0, 0, 0, 0.7),
+      0 10px 20px -5px rgba(0, 0, 0, 0.5),
+      /* Enhanced inner highlights */
+      inset 0 3px 6px rgba(255, 255, 255, 0.8),
+      inset 0 -3px 6px rgba(0, 0, 0, 0.4),
+      inset 0 2px 0 rgba(255, 255, 255, 1),
+      /* Enhanced edge highlights */
+      0 0 0 2px rgba(255, 255, 255, 0.5),
+      0 0 30px rgba(255, 122, 34, 0.6),
+      /* Enhanced ambient glow */
+      0 0 60px rgba(255, 122, 34, 0.3);
+  }
+
+  button:active {
+    transform: perspective(1000px) rotateX(4deg) translateY(0px) scale(0.98);
+    box-shadow: 
+      /* Pressed state shadows */
+      0 15px 30px -8px rgba(0, 0, 0, 0.7),
+      0 8px 16px -4px rgba(0, 0, 0, 0.5),
+      inset 0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Torch Cursor Animations */
+@keyframes flicker {
+  0% { transform: translateX(-50%) translateY(-50%) scale(1) rotate(-2deg); }
+  50% { transform: translateX(-50%) translateY(-50%) scale(1.1) rotate(2deg); }
+  100% { transform: translateX(-50%) translateY(-50%) scale(0.95) rotate(-1deg); }
+}
+
+@keyframes rise {
+  0% { 
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(-50%) translateY(-15px) scale(0.3);
+    opacity: 0;
+  }
+}
+
+@keyframes lightPulse {
+  0% { 
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateX(-50%) translateY(-50%) scale(1.2);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in {
+  0% { 
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
